@@ -52,4 +52,7 @@ Now, try out the application:
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
 
-(Reference: https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example)
+References:
+- [https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example] (https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example)
+- [https://github.com/nginx/kubernetes-ingress/tree/main/examples/custom-resources/traffic-splitting] (https://github.com/nginx/kubernetes-ingress/tree/main/examples/custom-resources/traffic-splitting)
+  

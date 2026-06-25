@@ -23,3 +23,14 @@ spec:
     backendRefs:
     - name: tea-svc
       port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /either
+    backendRefs:
+    - name: coffee-svc
+      port: 80
+      weight: 50
+    - name: tea-svc
+      port: 80
+      weight: 50

@@ -3,7 +3,7 @@
 ```
 JWT_token="<your-jwt-token>"
 kubectl create namespace nginx-gateway
-k get all -n nginx-gateway
+kubectl get all -n nginx-gateway
 kubectl create secret docker-registry nginx-plus-registry-secret --docker-server=private-registry.nginx.com --docker-username=$JWT_token --docker-password=none -n nginx-gateway
 echo $JWT_token > license.jwt
 kubectl create secret generic nplus-license --from-file license.jwt -n nginx-gateway

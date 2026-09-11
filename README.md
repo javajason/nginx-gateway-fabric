@@ -78,13 +78,29 @@ In this example, we use the IP address from node01, 10.1.1.4. Save this IP addre
 
 `GW_IP=XXX.YYY.ZZZ.III`
 
-Now, try out the application:
+Now, try out the application. These examples show some of the routing capability. The /either path shows traffic splitting.
 
 `curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee`
 
 `curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea`
 
 `curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/either`
+
+If you want to show additional routing capabilities, you can download nginx-httproute.yaml to your local node where you are running kubectl and modify it.
+For example, you can change the weights for the /either path to be something other than 50/50 to favor one of the beverages. You will then need to "apply" the file.
+`kubectl apply -f nginx-httproute.yaml`
+
+If you want to show how traffic splitting it impacted, you can then run lots of requests within a while loop.
+In the following example, we are stripping out all lines except the server name to make it easier to see how the requests are being routed during repeated HTTP requests:
+
+`while (true); do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/either 2>/dev/null | grep name; sleep 1; done`
+```
+Server name: coffee-86757dc985-6kz6s
+Server name: coffee-86757dc985-6kz6s
+Server name: tea-86c974779-kkczk
+Server name: coffee-86757dc985-krtft
+Server name: tea-86c974779-2wrkk
+```
 
 References:
 - [https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example)
